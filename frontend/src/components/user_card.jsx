@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import "../styles/user_card.css";// Adjust the path as necessary
 
 const UserLogin = () => {
@@ -87,7 +88,7 @@ const UserLogin = () => {
                     </button>
 
                     <div className="register-option">
-                        <p>Don't have an account? <a href="/Signup">Sign up</a></p>
+                        <p>Don't have an account? <Link to="/SignUp">Sign Up</Link></p>
                     </div>
                 </form>
 

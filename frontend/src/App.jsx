@@ -8,12 +8,12 @@ function App() {
     return (
         <>
             <BrowserRouter>
-            <Routes>
-            <Route path="/" element={<Dashboard />} ></Route>
-          
-          <Route path="/Signup" element={<SignupForm/>} />
-            <Route path="/login" element={<UserLogin />} />
-            </Routes>
+                <Routes>
+                    <Route path="/" element={<Dashboard />} ></Route>
+
+                    <Route path="/Signup" element={<SignupForm />} />
+                    <Route path="/login" element={<UserLogin />} />
+                </Routes>
             </BrowserRouter>
 
             {/* <SignupForm />

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/SignupForm.css';
 
 const SignupForm = ({ onBackToDashboard }) => {
@@ -189,7 +190,7 @@ const SignupForm = ({ onBackToDashboard }) => {
                     </button>
 
                     <div className="form-footer">
-                        Already have an account? <a href="/login">Log In</a>
+                        Already have an account? <Link to="/login">Log In</Link>
                     </div>
                 </form>
 
