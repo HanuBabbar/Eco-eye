@@ -1,10 +1,20 @@
-function App()
-{
+import AdminCard from "./components/admin_card";
+import UserLogin from "./components/user_card";
+import Navbar from "./components/Navbar";
+import Dashboard from "./pages/Dashboard";
+import SignupForm from "./components/SignupForm";
+function App() {
     return (
-        <div className="App">
-            <h1>Eco-eye</h1>
-            <p>Welcome to the Eco-eye application!</p>
-        </div>
+        <>
+            <Dashboard>
+
+            </Dashboard>
+            <SignupForm />
+            <UserLogin />
+
+        </>
+
+
     );
 }
 export default App;
