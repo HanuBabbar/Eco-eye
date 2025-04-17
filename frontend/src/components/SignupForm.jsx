@@ -95,11 +95,7 @@ const SignupForm = ({ onBackToDashboard }) => {
     return (
         <div className="signup-container">
             <div className="signup-form-wrapper">
-                <div className="back-button">
-                    <button onClick={onBackToDashboard}>
-                        <i className="fas fa-arrow-left"></i> Back to Home
-                    </button>
-                </div>
+               
                 <h2>Create Your Account</h2>
                 <p className="form-subtitle">Join Eco-eye and start your sustainable journey today</p>
 

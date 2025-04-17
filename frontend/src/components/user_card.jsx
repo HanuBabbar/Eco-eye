@@ -87,7 +87,7 @@ const UserLogin = () => {
                     </button>
 
                     <div className="register-option">
-                        <p>Don't have an account? <a href="#">Sign up</a></p>
+                        <p>Don't have an account? <a href="/Signup">Sign up</a></p>
                     </div>
                 </form>
 
@@ -102,7 +102,7 @@ const UserLogin = () => {
                         <button className="social-btn facebook">
                             <i className="fab fa-facebook-f"></i>
                         </button>
-                        
+
                     </div>
                 </div>
 
