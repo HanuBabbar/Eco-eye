@@ -32,15 +32,12 @@ const UserLogin = () => {
             console.log("User login attempt with:", formData);
             
             const response = await axios.post('http://localhost:8888/login',
-                {
-                    email: formData.email,
-                    password: formData.password
-                },
+                formData,
                 {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    withCredentials: true // Necessary if your API uses cookies for auth
+                    // withCredentials: true // Necessary if your API uses cookies for auth
                 }
             );
             
