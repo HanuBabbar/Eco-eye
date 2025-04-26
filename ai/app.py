@@ -23,6 +23,7 @@ transform = transforms.Compose([
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
     contents = await file.read()
+
     image = Image.open(io.BytesIO(contents)).convert("RGB")
     input_tensor = transform(image).unsqueeze(0)
 

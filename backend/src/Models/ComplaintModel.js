@@ -22,6 +22,10 @@ const complaintSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
+    aiOpinion:{
+        type: String,
+        // required: true
+    },
     complaintUser:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
