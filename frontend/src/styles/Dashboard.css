@@ -156,15 +156,15 @@ body, html {
 }
 
 .cta-button.primary {
-  background-color: #2e8b57;
+  background-color: transparent;
   color: white;
-  box-shadow: 0 5px 15px rgba(46, 139, 87, 0.4);
+  border: 2px solid white;
 }
 
+
 .cta-button.primary:hover {
-  background-color: #246b45;
+  background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(46, 139, 87, 0.5);
 }
 
 .cta-button.secondary {

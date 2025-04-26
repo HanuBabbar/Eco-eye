@@ -37,7 +37,7 @@ const UserLogin = () => {
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    withCredentials: true // Necessary if your API uses cookies for auth
+                    // withCredentials: true // Necessary if your API uses cookies for auth
                 }
             );
             

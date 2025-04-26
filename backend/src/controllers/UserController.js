@@ -3,9 +3,10 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+require('dotenv').config();
 // Require Models
 const User = require('../Models/UserModel'); // Adjust the path as necessary
+const jwt = require('jsonwebtoken');
 
 
 exports.signup = async (req, res) => {
@@ -45,11 +46,12 @@ exports.signup = async (req, res) => {
 }
 
 exports.loginUser= async (req,res)=>{
-    const userId=req.user?.id
-    if(userId){
-      return res.status(200).json({message:"Logedin"})
-    }
+    // const userId=req.user?.id
+    // if(userId){
+    //   return res.status(200).json({message:"Logedin"})
+    // }
     try {
+        
         const { email, password } = req.body;
         
         // existing user check
@@ -78,8 +80,6 @@ exports.loginUser= async (req,res)=>{
           process.env.JWT_SECRET,
           { expiresIn: "7d" }
         );
-
-
       return  res.status(200).json({token})
 
     } catch (error) {

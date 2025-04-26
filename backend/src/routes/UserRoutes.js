@@ -10,6 +10,6 @@ const { signup,loginUser } = require('../controllers/UserController'); // Adjust
 
 // SignUp Route for user registration
 app.post('/Signup',signup);
-app.post('/login',auth,loginUser)
+app.post('/login',loginUser)
 
 module.exports = app;
