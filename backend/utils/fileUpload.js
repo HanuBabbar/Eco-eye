@@ -1,5 +1,8 @@
-import {v2 as cloudinary} from "cloudinary";
-import fs from "fs";
+
+
+const cloudinary = require("cloudinary").v2;
+const fs = require('fs');
+require("dotenv").config();
 
 cloudinary.config({
     // add to .env
@@ -8,7 +11,7 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET
 });
 
-export const uploadOnCloudinary = async (localFilePath)=>{
+exports.uploadOnCloudinary = async (localFilePath)=>{
     try{
 
         if(!localFilePath){

@@ -19,38 +19,9 @@ app.get("/", (req, res) => {
 
 // Mounted routes from the routes folder
 const routes = require('./routes/UserRoutes'); // Adjust the path as necessary
+const complaintRoutes = require('./routes/Complaint'); // Adjust the path as necessary
 app.use(routes); // Use the routes defined in User.js
-
-
-
-// Multer file upload
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Specify the directory to save files
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname); // Create a unique filename
-    }
-});
-// Create Multer instance
-const upload = multer({ storage: storage });
-// route for image upload
-app.post('/upload', upload.single('image'), (req, res) => {
-    const { description, location } = req.body; // Access additional fields
-    const file = req.file; // Access the uploaded file
-    if (!file) {
-        return res.status(400).json({ success: false, message: 'No file uploaded.' });
-    }
-    // Log the received data
-    console.log('File:', file);
-    console.log('Description:', description);
-    console.log('Location:', location);
-    // Respond with success
-    res.json({ success: true, message: 'Image uploaded successfully!', file: file });
-});
-console.log(__dirname);
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use(complaintRoutes); // Use the routes defined in Complaint.js
 
 
 
