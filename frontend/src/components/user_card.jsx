@@ -12,6 +12,7 @@ const UserLogin = () => {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    localStorage.setItem('token', json.stringify(''));
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
