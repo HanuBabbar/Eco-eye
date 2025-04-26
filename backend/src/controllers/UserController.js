@@ -43,3 +43,46 @@ exports.signup = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
+
+exports.loginUser= async (req,res)=>{
+    const userId=req.user?.id
+    if(userId){
+      return res.status(200).json({message:"Logedin"})
+    }
+    try {
+        const { email, password } = req.body;
+        
+        // existing user check
+        const user=await User.findOne({email})
+        if(!user){
+          return res.status(404).json({message:"User Not Found"}) 
+        }
+
+        // compare password
+        const isMatch=await bcrypt.compare(password,user.password)
+        if(!isMatch){
+          return res.status(400).json({message:"Invalid Password"})
+        }
+
+        // generate JWT
+        if(!process.env.JWT_SECRET){
+          return res.status(500).json({message:"Server Error, Contact admin"})
+            
+        }
+        const token = jwt.sign(
+          {
+            id: user._id,
+            email: user.email,
+            fullName: user.fullName,
+          },
+          process.env.JWT_SECRET,
+          { expiresIn: "7d" }
+        );
+
+
+      return  res.status(200).json({token})
+
+    } catch (error) {
+      return  res.status(500).json({error:error.message})
+    }
+}
