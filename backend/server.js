@@ -18,15 +18,15 @@ app.get("/", (req, res) => {
 });
 
 // Mounted routes from the routes folder
-const routes = require('./routes/UserRoutes'); // Adjust the path as necessary
-const complaintRoutes = require('./routes/Complaint'); // Adjust the path as necessary
+const routes = require('./src/routes/UserRoutes'); // Adjust the path as necessary
+const complaintRoutes = require('./src/routes/Complaint'); // Adjust the path as necessary
 app.use(routes); // Use the routes defined in User.js
 app.use(complaintRoutes); // Use the routes defined in Complaint.js
 
 
 
 // Db Connection
-const connectDb = require('./config/atlasConn'); // Adjust the path as necessary
+const connectDb = require('./src/config/atlasConn'); // Adjust the path as necessary
 connectDb();
 
 
