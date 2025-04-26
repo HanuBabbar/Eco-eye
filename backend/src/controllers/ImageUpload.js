@@ -1,6 +1,6 @@
 const fs = require('fs');
 const FormData = require('form-data');
-const axios = require('axios'); // Make sure to install axios
+const axios = require('axios');
 const { uploadOnCloudinary } = require('../utils/fileUpload');
 const ComplaintModel = require('../Models/ComplaintModel');
 
@@ -12,6 +12,8 @@ exports.uploadImage = async (req, res) => {
         return res.status(400).json({ success: false, message: 'No file uploaded.' });
     }
 
+    let aiResultText = "AI server not active"; // Default if AI not available
+
     try {
         console.log("Complaint Location:", complaintLocation);
 
@@ -19,17 +21,24 @@ exports.uploadImage = async (req, res) => {
         const formData = new FormData();
         formData.append('file', fs.createReadStream(file.path));
 
-        // Send the image to FastAPI using axios
-        const aiResponse = await axios.post('http://localhost:8000/predict', formData, {
-            headers: {
-                ...formData.getHeaders(),
-            },
-        });
+        try {
+            // Send the image to FastAPI using axios
+            const aiResponse = await axios.post('http://localhost:8000/predict', formData, {
+                headers: {
+                    ...formData.getHeaders(),
+                },
+                timeout: 3000, // Wait max 2 seconds, avoid stuck requests
+            });
 
-        const aiResult = aiResponse.data;
-        console.log("AI Result:",aiResult);
-        const result= (aiResult.confidence*100).toFixed(2) +"% "+ (aiResult.prediction ? "Non" :"Bio"); // Assuming the AI result is in the 'result' field
-        console.log("AI Result:", result);
+            const aiData = aiResponse.data;
+            console.log("AI Result:", aiData);
+
+            aiResultText = (aiData.confidence * 100).toFixed(2) + "% " + (aiData.prediction ? "Non-Biodegradable" : "Biodegradable");
+        } catch (err) {
+            console.warn("AI server not reachable. Skipping AI prediction.");
+            // If FastAPI not active, we continue without crashing
+        }
+
         // Upload image to Cloudinary
         const cloudinaryResponse = await uploadOnCloudinary(file.path);
 
@@ -43,18 +52,18 @@ exports.uploadImage = async (req, res) => {
             complaintDate,
             complaintDescription,
             complaintImage: cloudinaryResponse.url,
-            aiOpinion: result
+            aiOpinion: aiResultText,
         });
 
         console.log("Complaint created successfully");
 
-        // After everything is done, delete the local uploaded file
         res.json({
             success: true,
-            message: 'Image uploaded and processed successfully!',
-            cloudinaryUrl: cloudinaryResponse.url,
-            aiOpinion: aiResult
+            message: 'Image uploaded successfully!',
+            aiOpinion: aiResultText,
+            cloudinaryUrl: cloudinaryResponse.url
         });
+
     } catch (error) {
         console.error(error);
         return res.status(500).json({ success: false, message: 'Server error.', error: error.message });

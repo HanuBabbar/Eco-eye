@@ -8,7 +8,7 @@ import Admin from "./pages/Admin";
 
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 function App() {
 
     useEffect(() => {
