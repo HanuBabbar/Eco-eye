@@ -8,7 +8,19 @@ require('dotenv').config();
 const User = require('../Models/UserModel'); // Adjust the path as necessary
 const jwt = require('jsonwebtoken');
 
-
+exports.getUser = async (req, res) => {
+    try {
+        const userId = req.user.id; // Assuming you have middleware to set req.user
+        const user = await User.findById(userId).select('-password'); // Exclude password from the response
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
+        }
+        res.status(200).json({ success: true, user });
+    } catch (error) {
+        console.error("Error fetching user:", error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
+    }
+}
 exports.signup = async (req, res) => {
     try{
         // console.log("Hello");
