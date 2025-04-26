@@ -56,7 +56,7 @@ const ImageUpload = () => {
       formData.append('location', location);
       
       // Replace with your actual API endpoint
-      const response = await axios.post('http://localhost:6000/upload', formData, {
+      const response = await axios.post('http://localhost:8888/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

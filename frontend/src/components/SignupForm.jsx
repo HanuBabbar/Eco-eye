@@ -90,7 +90,7 @@ const SignupForm = ({ onBackToDashboard }) => {
 
             // New addition passing the data to the backend Server
             // Make POST request to your backend API
-            const response = await axios.post('http://localhost:6600/Signup', // Replace with your actual endpoint
+            const response = await axios.post('http://localhost:8888/Signup', // Replace with your actual endpoint
                 formData,
                 {
                     headers: {

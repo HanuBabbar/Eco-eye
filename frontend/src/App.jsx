@@ -10,7 +10,7 @@ import { use, useEffect } from "react";
 function App() {
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/").then((res) => {
+        axios.get("http://localhost:8888/").then((res) => {
             console.log(res.data);
         }).catch((err) => {
             console.log(err);
