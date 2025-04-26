@@ -17,17 +17,8 @@ app.get("/", (req, res) => {
     });
 });
 
-// Pos
-app.post('/Signup', (req, res) => {
-    const { fullName, email, password } = req.body; // Ensure the keys match what you're sending
-    console.log("User  created:", { fullName, email, password }); // Log the user data
-    res.json({
-        success: true,
-        message: "User  registered successfully",
-    })
-});
 // Mounted routes from the routes folder
-const routes = require('./routes/User'); // Adjust the path as necessary
+const routes = require('./routes/UserRoutes'); // Adjust the path as necessary
 app.use(routes); // Use the routes defined in User.js
 
 

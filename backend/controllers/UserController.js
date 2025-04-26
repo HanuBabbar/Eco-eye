@@ -5,11 +5,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 // Require Models
-const User = require('../models/User'); // Adjust the path as necessary
+const User = require('../Models/UserModel'); // Adjust the path as necessary
 
 
 exports.signup = async (req, res) => {
     try{
+        // console.log("Hello");
         const { fullName, email, password,confirmPassword } = req.body;
         console.log("User created:", fullName, email, password );
         // validate the data
