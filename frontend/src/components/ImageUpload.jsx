@@ -79,8 +79,8 @@ const ImageUpload = () => {
     try {
       const formData = new FormData();
       formData.append('image', image);
-      formData.append('description', description);
-      formData.append('location', location);
+      formData.append('complaintDescription', description);
+      formData.append('complaintLocation', location);
       formData.append('date', imageDate);
       
       // Replace with your actual API endpoint
@@ -150,7 +150,8 @@ const ImageUpload = () => {
         <div className="form-group">
           <label htmlFor="description">Description:</label>
           <textarea
-            id="description"
+            id="complaintDescription"
+            name='complaintDescription'
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Describe the waste material (e.g., plastic bottles, food waste, electronics)"
@@ -162,7 +163,8 @@ const ImageUpload = () => {
           <label htmlFor="location">Location (optional):</label>
           <input
             type="text"
-            id="location"
+            name='complaintLocation'
+            id="complaintLocation"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Where was this waste found?"

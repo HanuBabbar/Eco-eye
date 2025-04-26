@@ -4,7 +4,7 @@ const User = require('../Models/RequestModel');
 const complaintSchema = new mongoose.Schema({
     complaintLocation:{
         type: String,
-        required: true
+        // required: true
     },
     complaintDate:{
         type:Date,
@@ -12,7 +12,7 @@ const complaintSchema = new mongoose.Schema({
     },
     complaintDescription:{
         type: String,
-        required: true
+        // required: true
     },
     complaintStatus:{
         type: Boolean,
@@ -20,12 +20,12 @@ const complaintSchema = new mongoose.Schema({
     },
     complaintImage:{
         type: String,
-        required: true
+        // required: true
     },
     complaintUser:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        // required: true
     }
 });
 
