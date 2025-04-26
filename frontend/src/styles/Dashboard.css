@@ -308,6 +308,31 @@ body, html {
   color: #666;
   line-height: 1.6;
 }
+/* Add to your Dashboard.css file */
+.image-upload-wrapper {
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #2e7d32;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #1b5e20;
+  text-decoration: underline;
+}
 
 /* Responsive Styles */
 @media (max-width: 768px) {

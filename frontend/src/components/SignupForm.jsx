@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/SignupForm.css';
+import axios from 'axios';
 
 const SignupForm = ({ onBackToDashboard }) => {
     const [formData, setFormData] = useState({
@@ -85,6 +86,34 @@ const SignupForm = ({ onBackToDashboard }) => {
                 confirmPassword: '',
                 agreeTerms: false
             });
+
+
+            // New addition passing the data to the backend Server
+            // Make POST request to your backend API
+            const response = await axios.post('http://localhost:6600/Signup', // Replace with your actual endpoint
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Add any other required headers (like authorization tokens)
+                    }
+                }
+            );
+
+            // Handle successful response from the server
+            if (response.data.success) {
+                setIsSuccess(true);
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                    agreeTerms: false
+                });
+            } else {
+                // Handle server-side validation errors
+                setErrors({ form: response.data.message || 'Registration failed. Please try again.' });
+            }
         } catch (error) {
             console.error('Signup error:', error);
             setErrors({ form: 'An error occurred. Please try again later.' });
@@ -92,6 +121,9 @@ const SignupForm = ({ onBackToDashboard }) => {
             setIsSubmitting(false);
         }
     };
+
+    
+    
 
     return (
         <div className="signup-container">
