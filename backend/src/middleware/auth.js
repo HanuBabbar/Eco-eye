@@ -1,7 +1,7 @@
-import mongoose from "mongoose"
-import jwt from 'jsonwebtoken'
+const mongoose = require('mongoose')
+const jwt =require('jsonwebtoken')
 
-export const auth = (req,res,next)=>{
+exports.auth = (req,res,next)=>{
     const token =req.cookies?.token || req.headers?.authorization?.split(" ")[1]
     if(!token){
         res.status(401).json({message:"Login First"})
