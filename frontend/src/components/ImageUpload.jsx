@@ -1,15 +1,23 @@
 import { useState } from 'react';
 import axios from 'axios';
-import '../styles/ImageUpload.css'; // You'll need to create this CSS file
+import '../styles/ImageUpload.css';
 
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
+  const [imageDate, setImageDate] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  // Set default date to today when component mounts
+  useState(() => {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    setImageDate(formattedDate);
+  }, []);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -31,6 +39,25 @@ const ImageUpload = () => {
     reader.readAsDataURL(file);
     
     setError('');
+
+    // Try to extract the date from the image metadata if possible
+    try {
+      const reader2 = new FileReader();
+      reader2.onload = function(event) {
+        const exifData = EXIF.readFromBinaryFile(event.target.result);
+        if (exifData && exifData.DateTime) {
+          // Format the date from EXIF data (if available)
+          const exifDate = new Date(exifData.DateTime);
+          if (!isNaN(exifDate)) {
+            setImageDate(exifDate.toISOString().split('T')[0]);
+          }
+        }
+      };
+      reader2.readAsArrayBuffer(file);
+    } catch (err) {
+      console.log("Could not read EXIF data", err);
+      // Continue without setting date from EXIF
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -54,6 +81,7 @@ const ImageUpload = () => {
       formData.append('image', image);
       formData.append('description', description);
       formData.append('location', location);
+      formData.append('date', imageDate);
       
       // Replace with your actual API endpoint
       const response = await axios.post('http://localhost:8888/upload', formData, {
@@ -69,6 +97,10 @@ const ImageUpload = () => {
         setPreview(null);
         setDescription('');
         setLocation('');
+        
+        // Set date back to today
+        const today = new Date();
+        setImageDate(today.toISOString().split('T')[0]);
       } else {
         setError('Failed to upload image');
       }
@@ -135,6 +167,19 @@ const ImageUpload = () => {
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Where was this waste found?"
           />
+        </div>
+        
+        <div className="form-group date-container">
+          <label htmlFor="imageDate">Date Image Was Taken:</label>
+          <input
+            type="date"
+            id="imageDate"
+            value={imageDate}
+            onChange={(e) => setImageDate(e.target.value)}
+            max={new Date().toISOString().split('T')[0]} // Prevents future dates
+            required
+          />
+          <div className="calendar-icon">📅</div>
         </div>
         
         <button 
