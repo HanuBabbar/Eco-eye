@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../styles/Dashboard.css";
 import Navbar from "../components/Navbar";
 import ImageUpload from "../components/ImageUpload";
 
 const Dashboard = ({ onSignupClick }) => {
     const [showImageUpload, setShowImageUpload] = useState(false);
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleGetStartedClick = () => {
         setShowImageUpload(true);
@@ -17,7 +19,7 @@ const Dashboard = ({ onSignupClick }) => {
             {showImageUpload ? (
                 <div className="image-upload-wrapper">
                     <button className="back-button" onClick={() => setShowImageUpload(false)}>
-                       
+                        Back
                     </button>
                     <ImageUpload />
                 </div>
@@ -41,15 +43,13 @@ const Dashboard = ({ onSignupClick }) => {
                             <div className="hero-buttons">
                                 <button 
                                     className="cta-button primary"
-                                    onClick={handleGetStartedClick}
+                                    onClick={() => navigate('/login')} // Redirect to login
                                 >
-                                    Get Started
+                                    Log in
                                 </button>
-                                
-     
                                 <button
                                     className="cta-button secondary"
-                                    onClick={onSignupClick}
+                                    onClick={() => navigate('/Signup')} // Redirect to signup
                                 >
                                     Sign Up
                                 </button>
