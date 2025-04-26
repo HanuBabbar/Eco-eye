@@ -20,8 +20,10 @@ app.get("/", (req, res) => {
 // Mounted routes from the routes folder
 const routes = require('./src/routes/UserRoutes'); // Adjust the path as necessary
 const complaintRoutes = require('./src/routes/Complaint'); // Adjust the path as necessary
+const adminRoutes = require('./src/routes/AdminRoutes');
 app.use(routes); // Use the routes defined in User.js
 app.use(complaintRoutes); // Use the routes defined in Complaint.js
+app.use(adminRoutes);
 
 
 
