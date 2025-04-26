@@ -27,7 +27,7 @@ exports.uploadImage = async (req, res) => {
                 headers: {
                     ...formData.getHeaders(),
                 },
-                timeout: 2000, // Wait max 2 seconds, avoid stuck requests
+                timeout: 3000, // Wait max 2 seconds, avoid stuck requests
             });
 
             const aiData = aiResponse.data;
