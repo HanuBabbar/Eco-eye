@@ -63,13 +63,13 @@ const Navbar = () => {
           </a>
           
           {isLoggedIn ? (
-            <button onClick={handleLogout} className="nav-button">
-              Logout
-            </button>
-          ) : (
-            <Link to="/Signup" className="nav-button">
-              Sign Up
-            </Link>
+          <button onClick={() => navigate('/dashboard')} className="nav-button">
+             Dashboard
+           </button>
+        ) : (
+          <Link to="/Signup" className="nav-button">
+            Sign Up
+          </Link>
           )}
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../styles/Dashboard.css";
 import Navbar from "../components/Navbar";
@@ -6,7 +6,15 @@ import ImageUpload from "../components/ImageUpload";
 
 const Dashboard = ({ onSignupClick }) => {
     const [showImageUpload, setShowImageUpload] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
     const navigate = useNavigate(); // Initialize useNavigate
+
+    useEffect(() => {
+        const token = localStorage.getItem('token'); // Check if the user is logged in
+        if (token) {
+            setIsLoggedIn(true);
+        }
+    }, []);
 
     const handleGetStartedClick = () => {
         setShowImageUpload(true);
@@ -41,18 +49,22 @@ const Dashboard = ({ onSignupClick }) => {
                                 Track, analyze, and improve your environmental impact with our comprehensive sustainability dashboard.
                             </p>
                             <div className="hero-buttons">
-                                <button
-                                    className="cta-button primary"
-                                    onClick={() => navigate('/login')} // Redirect to login
-                                >
-                                    Log in
-                                </button>
-                                <button
-                                    className="cta-button secondary"
-                                    onClick={() => navigate('/Signup')} // Redirect to signup
-                                >
-                                    Sign Up
-                                </button>
+                                {!isLoggedIn && ( // Conditionally render buttons if the user is not logged in
+                                    <>
+                                        <button
+                                            className="cta-button primary"
+                                            onClick={() => navigate('/login')} // Redirect to login
+                                        >
+                                            Log in
+                                        </button>
+                                        <button
+                                            className="cta-button secondary"
+                                            onClick={() => navigate('/Signup')} // Redirect to signup
+                                        >
+                                            Sign Up
+                                        </button>
+                                    </>
+                                )}
                             </div>
                         </div>
 
@@ -103,28 +115,6 @@ const Dashboard = ({ onSignupClick }) => {
                             Register Complaint
                         </button>
                     </section>
-
-                    {/* Features Section */}
-                    {/* <section className="features-section">
-                        <h2>Our Features</h2>
-                        <div className="features-grid">
-                            <div className="feature-card">
-                                <i className="fas fa-chart-line"></i>
-                                <h3>Environmental Tracking</h3>
-                                <p>Monitor your carbon footprint, energy usage, and waste production with real-time data analytics.</p>
-                            </div>
-                            <div className="feature-card">
-                                <i className="fas fa-leaf"></i>
-                                <h3>Sustainability Goals</h3>
-                                <p>Set personalized sustainability goals and track your progress with our intuitive dashboard.</p>
-                            </div>
-                            <div className="feature-card">
-                                <i className="fas fa-lightbulb"></i>
-                                <h3>Eco-friendly Tips</h3>
-                                <p>Receive customized recommendations to reduce your environmental impact and live more sustainably.</p>
-                            </div>
-                        </div>
-                    </section> */}
 
                     {/* About Us Section */}
                     <section className="about-section">
