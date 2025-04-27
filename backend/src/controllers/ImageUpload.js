@@ -3,12 +3,12 @@ const FormData = require('form-data');
 const axios = require('axios');
 const { uploadOnCloudinary } = require('../utils/fileUpload');
 const ComplaintModel = require('../Models/ComplaintModel');
+const UserModel = require('../Models/UserModel'); // Adjust the path as necessary
 
 exports.uploadImage = async (req, res) => {
     const { complaintLocation, complaintDate, complaintDescription } = req.body;
     const file = req.file;
     const user = req.user; // Assuming user ID is available in req.user
-    console.log("User ID:", user._id);
     if (!user) {
         return res.status(401).json({ success: false, message: 'Unauthorized user.' });
     }
@@ -51,6 +51,9 @@ exports.uploadImage = async (req, res) => {
             return res.status(501).json({ success: false, message: 'Failed to upload image to Cloudinary.' });
         }
 
+        // console.log(user.id, "User ID");
+        const userData = await UserModel.findOne({_id : user.id});
+        // console.log(userData);
         // Save complaint to MongoDB
         await ComplaintModel.create({
             complaintLocation,
@@ -58,8 +61,9 @@ exports.uploadImage = async (req, res) => {
             complaintDescription,
             complaintImage: cloudinaryResponse.url,
             aiOpinion: aiResultText,
+            email: userData.email,
+            complaintUser: user.id // Assuming user ID is available in req.user
         });
-
         console.log("Complaint created successfully");
 
         res.json({
