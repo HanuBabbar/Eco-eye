@@ -72,8 +72,12 @@ const Admin = () => {
       const complaint = complaints.find(c => c._id === id);
       const newStatus = !complaint.complaintStatus;
       
-      await axios.patch(`http://localhost:8888/admin/complaints/${id}`, { 
+      await axios.put(`http://localhost:8888/admin/complaints/${id}`, { 
         complaintStatus: newStatus 
+      }, {
+        headers: { 'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+         } 
       });
       
       setComplaints(prev => prev.map(c => 
