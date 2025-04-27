@@ -8,7 +8,7 @@
 /* Sidebar styling */
 .dashboard-sidebar {
   width: 280px;
-  background-color: #ffffff;
+  background-color: #4EB56A;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   padding: 2rem 1rem;
   position: sticky;
@@ -41,12 +41,12 @@
 
 .user-profile h2 {
   margin: 0.5rem 0;
-  color: #333;
+  color: #fff;
   font-size: 1.5rem;
 }
 
 .user-email {
-  color: #666;
+  color: #fff;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }
@@ -73,7 +73,7 @@
 
 .stat-label {
   font-size: 0.8rem;
-  color: #666;
+  color: #fff;
 }
 
 .sidebar-menu {
@@ -85,7 +85,7 @@
 
 .sidebar-link {
   padding: 0.75rem 1rem;
-  color: #333;
+  color: #fff;
   text-decoration: none;
   border-radius: 8px;
   margin-bottom: 0.5rem;
@@ -102,9 +102,9 @@
   margin-top: 1rem;
   padding: 0.75rem 1rem;
   background: none;
-  border: 1px solid #ff5252;
+  border: 1px solid #ffff;
   border-radius: 8px;
-  color: #ff5252;
+  color: #fff;
   cursor: pointer;
   font-weight: 500;
   transition: all 0.3s;
@@ -360,4 +360,118 @@
     padding: 0.5rem;
     font-size: 0.9rem;
   }
+  /* Hamburger Button */
+.hamburger-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  color: #4eb56a;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px; /* Hidden by default */
+  width: 280px;
+  height: 100vh;
+  background-color: #4eb56a;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+.dashboard-sidebar.open {
+  left: 0; /* Show sidebar when open */
+}
+
+/* Adjust main content when sidebar is open */
+.user-dashboard .dashboard-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.dashboard-sidebar.open ~ .dashboard-content {
+  margin-left: 280px; /* Adjust content when sidebar is open */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    width: 100%;
+    left: -100%; /* Hidden by default on smaller screens */
+  }
+
+  .dashboard-sidebar.open {
+    left: 0; /* Show sidebar when open */
+  }
+
+  .dashboard-sidebar.open ~ .dashboard-content {
+    margin-left: 0; /* No margin adjustment for smaller screens */
+  }
+  /* Hamburger Button */
+.hamburger-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  color: #4eb56a;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px; /* Hidden by default */
+  width: 280px;
+  height: 100vh;
+  background-color: #4eb56a;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+.dashboard-sidebar.open {
+  left: 0; /* Show sidebar when open */
+}
+
+/* Adjust main content when sidebar is open */
+.user-dashboard .dashboard-content {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+}
+
+.dashboard-sidebar.open ~ .dashboard-content {
+  margin-left: 280px; /* Adjust content when sidebar is open */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .dashboard-sidebar {
+    width: 100%;
+    left: -100%; /* Hidden by default on smaller screens */
+  }
+
+  .dashboard-sidebar.open {
+    left: 0; /* Show sidebar when open */
+  }
+
+  .dashboard-sidebar.open ~ .dashboard-content {
+    margin-left: 0; /* No margin adjustment for smaller screens */
+  }
+}
+}
 }

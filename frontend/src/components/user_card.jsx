@@ -57,7 +57,7 @@ const UserLogin = () => {
                 localStorage.setItem('token', response.data.token);
                 console.log('Token stored:', response);
                 // Redirect to dashboard or home page
-                navigate('/dashboard');
+                navigate('/user');
             } else {
                 // Handle unexpected response format
                 setError('Login failed. Please try again.');

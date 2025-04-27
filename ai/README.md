@@ -1,4 +1,4 @@
-# Create and Activate Virtual Environment
+p# Create and Activate Virtual Environment
     1. cd ai
     2. python -m venv venv
     3. venv\Scripts\activate
