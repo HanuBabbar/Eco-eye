@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/UserDash.css'; // Will need to create this CSS file later
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import '../styles/UserDash.css'; // Ensure this CSS file exists
 
 const UserDashboard = () => {
     const [user, setUser] = useState({
         name: 'John Doe',
         email: 'john.doe@example.com',
         joinDate: 'January 2023',
-        avatar: 'https://via.placeholder.com/150' // Placeholder avatar
+        avatar: 'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png' // Placeholder avatar
     });
 
     const [requests, setRequests] = useState([
@@ -16,26 +16,24 @@ const UserDashboard = () => {
         { id: 3, title: 'Illegal Dumping', status: 'Resolved', date: '2023-06-05' }
     ]);
 
+    const navigate = useNavigate(); // Initialize useNavigate for redirection
+
     // Fetch user data from localStorage or API
     useEffect(() => {
-        // Example: Get user data from localStorage
         const userData = localStorage.getItem('userData');
         if (userData) {
             setUser(JSON.parse(userData));
         }
-
-        // Example: Fetch requests data from API
-        // const fetchRequests = async () => {
-        //   try {
-        //     const response = await fetch('/api/requests');
-        //     const data = await response.json();
-        //     setRequests(data);
-        //   } catch (error) {
-        //     console.error('Error fetching requests:', error);
-        //   }
-        // };
-        // fetchRequests();
     }, []);
+
+    const handleLogout = () => {
+        // Clear user data from localStorage
+        localStorage.removeItem('userData');
+        localStorage.removeItem('token'); // Remove token if used for authentication
+
+        // Redirect to the login page
+        navigate('/login');
+    };
 
     return (
         <div className="user-dashboard">
@@ -63,7 +61,7 @@ const UserDashboard = () => {
                         <Link to="/dashboard" className="sidebar-link active">Dashboard</Link>
                         <Link to="/profile" className="sidebar-link">Edit Profile</Link>
                         <Link to="/settings" className="sidebar-link">Settings</Link>
-                        <button className="logout-button">Logout</button>
+                        <button className="logout-button" onClick={handleLogout}>Logout</button>
                     </div>
                 </div>
             </aside>
@@ -107,25 +105,6 @@ const UserDashboard = () => {
                         <Link to="/all-requests" className="view-all-link">
                             View All Requests
                         </Link>
-                    </div>
-
-                    {/* Statistics Card */}
-                    <div className="dashboard-card stats-card">
-                        <h2>Environmental Impact</h2>
-                        <div className="impact-stats">
-                            <div className="impact-stat">
-                                <span className="impact-number">5</span>
-                                <span className="impact-label">Issues Reported</span>
-                            </div>
-                            <div className="impact-stat">
-                                <span className="impact-number">3</span>
-                                <span className="impact-label">Issues Resolved</span>
-                            </div>
-                            <div className="impact-stat">
-                                <span className="impact-number">120</span>
-                                <span className="impact-label">Community Points</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

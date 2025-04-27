@@ -63,7 +63,7 @@ const Navbar = () => {
           </a>
           
           {isLoggedIn ? (
-          <button onClick={() => navigate('/dashboard')} className="nav-button">
+          <button onClick={() => navigate('/user')} className="nav-button">
              Dashboard
            </button>
         ) : (
