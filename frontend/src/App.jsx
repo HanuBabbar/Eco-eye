@@ -5,10 +5,12 @@ import Dashboard from "./pages/Dashboard";
 import SignupForm from "./components/SignupForm";
 import ImageUpload from "./components/ImageUpload";
 import Admin from "./pages/Admin";
+import UserDashboard from "./pages/User_Dash";
 
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import { useEffect } from "react";
+
 function App() {
 
     useEffect(() => {
@@ -19,7 +21,7 @@ function App() {
         })
     })
 
-    
+
 
 
     return (
@@ -34,7 +36,8 @@ function App() {
 
                     <Route path="/image-upload" element={<ImageUpload />} />
                     <Route path="/admin" element={<Admin />} />
-                
+                    <Route path="/user" element={<UserDashboard />} />
+
 
                 </Routes>
 
@@ -44,8 +47,6 @@ function App() {
             <UserLogin /> */}
 
         </>
-
-
     );
 }
 export default App;

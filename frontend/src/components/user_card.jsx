@@ -168,30 +168,13 @@ const UserLogin = () => {
                             <span>Sign In <i className="fas fa-arrow-right"></i></span>
                         )}
                     </button>
+                
 
                     <div className="register-option">
                         <p>Don't have an account? <Link to="/SignUp">Sign Up</Link></p>
                     </div>
                 </form>
 
-                <div className="social-login">
-                    <div className="divider">
-                        <span>Or continue with</span>
-                    </div>
-                    <div className="social-buttons">
-                        <button className="social-btn google" disabled={isLoading}>
-                            <i className="fab fa-google"></i>
-                        </button>
-                        <button className="social-btn facebook" disabled={isLoading}>
-                            <i className="fab fa-facebook-f"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div className="eco-decoration">
-                    <div className="leaf leaf-1"></div>
-                    <div className="leaf leaf-2"></div>
-                </div>
             </div>
         </div>
     );
