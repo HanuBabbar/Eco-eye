@@ -7,23 +7,37 @@ const UserModel = require('../Models/UserModel'); // Adjust the path as necessar
 
 exports.updateImage = async (req, res) => {
     try {
-        const imgId = req.id;
-        const complaint = await ComplaintModel.findById(imgId);
+        const { id } = req.params;
+
+        // Find the complaint first to check if it exists
+        const complaint = await ComplaintModel.findById(id);
 
         if (!complaint) {
             return res.status(404).json({ success: false, message: 'Complaint not found.' });
         }
 
-        // Update only the complaintStatus
-        complaint.complaintStatus = !(complaint.complaintStatus); // or false based on your logic or request input
-        await complaint.save();
+        // Toggle the complaintStatus using findByIdAndUpdate
+        const updatedComplaint = await ComplaintModel.findByIdAndUpdate(
+            id,
+            { complaintStatus: !complaint.complaintStatus },
+            { new: true } // return the updated document
+        );
 
-        return res.json({ success: true, message: 'Complaint status updated successfully.', complaint });
+        return res.status(200).json({
+            success: true,
+            message: 'Complaint status updated successfully.',
+            data: updatedComplaint
+        });
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ success: false, message: 'Server error.', error: error.message });
+        console.error('Error updating complaint status:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal Server Error.',
+            error: error.message
+        });
     }
 };
+
 
 
 exports.uploadImage = async (req, res) => {

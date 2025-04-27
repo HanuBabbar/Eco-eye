@@ -11,6 +11,6 @@ const {auth} = require('../middleware/auth'); // Adjust the path as necessary
 
 
 app.post('/upload',auth, upload.single('image') , uploadImage);
-app.put('admin/complaints/:id',auth, updateImage); // Update complaint status
+app.post('/admin/complaints/:id',auth, updateImage); // Update complaint status
 
 module.exports = app;
