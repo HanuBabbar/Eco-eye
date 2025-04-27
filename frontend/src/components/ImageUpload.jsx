@@ -29,7 +29,7 @@ const ImageUpload = () => {
           console.error("Error fetching location:", err);
           setError("Unable to fetch your location. Please enter it manually.");
         }
-      );s
+      );
     } else {
       setError("Geolocation is not supported by your browser.");
     }
