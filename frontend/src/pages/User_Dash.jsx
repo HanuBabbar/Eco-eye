@@ -59,8 +59,8 @@ const UserDashboard = () => {
                     </div>
                     <div className="sidebar-menu">
                         <Link to="/dashboard" className="sidebar-link active">Dashboard</Link>
-                        <Link to="/profile" className="sidebar-link">Edit Profile</Link>
-                        <Link to="/settings" className="sidebar-link">Settings</Link>
+                        <Link to="/edit" className="sidebar-link">Edit Profile</Link>
+
                         <button className="logout-button" onClick={handleLogout}>Logout</button>
                     </div>
                 </div>
@@ -82,30 +82,8 @@ const UserDashboard = () => {
                         </Link>
                     </div>
 
-                    {/* Your Requests Card */}
-                    <div className="dashboard-card your-requests">
-                        <h2>Your Recent Requests</h2>
-                        <div className="requests-list">
-                            {requests.length > 0 ? (
-                                requests.slice(0, 3).map(request => (
-                                    <div key={request.id} className="request-item">
-                                        <div className="request-content">
-                                            <h3>{request.title}</h3>
-                                            <p className="request-date">Submitted on {request.date}</p>
-                                        </div>
-                                        <span className={`status-badge ${request.status.toLowerCase().replace(' ', '-')}`}>
-                                            {request.status}
-                                        </span>
-                                    </div>
-                                ))
-                            ) : (
-                                <p className="no-requests">No requests submitted yet</p>
-                            )}
-                        </div>
-                        <Link to="/all-requests" className="view-all-link">
-                            View All Requests
-                        </Link>
-                    </div>
+
+
                 </div>
 
                 {/* All Requests Section */}

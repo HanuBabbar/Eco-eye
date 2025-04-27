@@ -6,6 +6,7 @@ import SignupForm from "./components/SignupForm";
 import ImageUpload from "./components/ImageUpload";
 import Admin from "./pages/Admin";
 import UserDashboard from "./pages/User_Dash";
+import Edit from "./components/Edit";
 
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/image-upload" element={<ImageUpload />} />
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/user" element={<UserDashboard />} />
+                    <Route path="/edit" element={<Edit />}/>
 
 
                 </Routes>
