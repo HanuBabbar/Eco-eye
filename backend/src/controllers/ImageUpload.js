@@ -5,6 +5,27 @@ const { uploadOnCloudinary } = require('../utils/fileUpload');
 const ComplaintModel = require('../Models/ComplaintModel');
 const UserModel = require('../Models/UserModel'); // Adjust the path as necessary
 
+exports.updateImage = async (req, res) => {
+    try {
+        const imgId = req.id;
+        const complaint = await ComplaintModel.findById(imgId);
+
+        if (!complaint) {
+            return res.status(404).json({ success: false, message: 'Complaint not found.' });
+        }
+
+        // Update only the complaintStatus
+        complaint.complaintStatus = !(complaint.complaintStatus); // or false based on your logic or request input
+        await complaint.save();
+
+        return res.json({ success: true, message: 'Complaint status updated successfully.', complaint });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false, message: 'Server error.', error: error.message });
+    }
+};
+
+
 exports.uploadImage = async (req, res) => {
     const { complaintLocation, complaintDate, complaintDescription } = req.body;
     const file = req.file;
