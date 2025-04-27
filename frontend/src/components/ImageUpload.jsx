@@ -18,21 +18,25 @@ const ImageUpload = () => {
     const formattedDate = today.toISOString().split('T')[0];
     setImageDate(formattedDate);
 
-    // Request user's location
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation(`${latitude}, ${longitude}`);
-        },
-        (err) => {
-          console.error("Error fetching location:", err);
-          setError("Unable to fetch your location. Please enter it manually.");
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by your browser.");
-    }
+    // Request user's location asynchronously
+    const fetchLocation = async () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setLocation(`${latitude}, ${longitude}`);
+          },
+          (err) => {
+            console.error("Error fetching location:", err);
+            setError("Unable to fetch your location. Please enter it manually.");
+          }
+        );
+      } else {
+        setError("Geolocation is not supported by your browser.");
+      }
+    };
+
+    fetchLocation(); // Call the function to fetch location
   }, []);
 
   const handleImageChange = (e) => {
