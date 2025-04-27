@@ -211,6 +211,58 @@ const Dashboard = ({ onSignupClick }) => {
                             </div>
                         </div>
                     </section>
+
+                    {/* Footer Section */}
+                    <footer className="site-footer">
+                        <div className="footer-content">
+                            <div className="footer-logo-section">
+                                <h3 className="footer-logo">Eco-eye</h3>
+                                <p>Empowering sustainable choices through technology and community action.</p>
+                                <div className="social-links">
+                                    <a href="#" className="social-icon"><i className="fab fa-facebook-f"></i></a>
+                                    <a href="#" className="social-icon"><i className="fab fa-twitter"></i></a>
+                                    <a href="#" className="social-icon"><i className="fab fa-instagram"></i></a>
+                                    <a href="#" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+
+                            <div className="footer-links">
+                                <div className="footer-links-column">
+                                    <h4>Quick Links</h4>
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+
+                                <div className="footer-links-column">
+                                    <h4>Resources</h4>
+                                    <ul>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">FAQ</a></li>
+                                        <li><a href="#">Support</a></li>
+                                        <li><a href="#">Community</a></li>
+                                    </ul>
+                                </div>
+
+                                <div className="footer-links-column">
+                                    <h4>Legal</h4>
+                                    <ul>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms of Service</a></li>
+                                        <li><a href="#">Cookie Policy</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="footer-bottom">
+                            <p>&copy; {new Date().getFullYear()} Eco-eye. All rights reserved.</p>
+                            <p>Designed with <span className="heart">♥</span> for a greener planet</p>
+                        </div>
+                    </footer>
                 </>
             )}
         </div>

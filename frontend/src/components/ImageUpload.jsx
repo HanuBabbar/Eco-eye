@@ -86,7 +86,8 @@ const ImageUpload = () => {
       // Replace with your actual API endpoint
       const response = await axios.post('http://localhost:8888/upload', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // Include token if needed
         }
       });
       
@@ -106,7 +107,9 @@ const ImageUpload = () => {
       }
     } catch (err) {
       console.error('Upload error:', err);
-      setError('Error uploading image. Please try again.');
+      if (err.response.status===401) {
+        setError('Unauthorized. Please log in and try again.');}
+      else  setError('An error occurred while uploading the image');
     } finally {
       setLoading(false);
     }

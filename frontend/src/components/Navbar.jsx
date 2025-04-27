@@ -5,8 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Handle scroll effect
   useEffect(() => {
@@ -21,6 +22,23 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Check if user token exists
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/');
+  };
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
@@ -43,9 +61,16 @@ const Navbar = () => {
           <a href="#services" className="nav-link">
             <span>Services</span>
           </a>
-          <Link to="/Signup" className="nav-button">
-            Sign Up
-          </Link>
+          
+          {isLoggedIn ? (
+            <button onClick={handleLogout} className="nav-button">
+              Logout
+            </button>
+          ) : (
+            <Link to="/Signup" className="nav-button">
+              Sign Up
+            </Link>
+          )}
         </div>
 
         {/* <button onClick={ () =>

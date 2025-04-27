@@ -789,3 +789,127 @@ body, html {
 .hero-buttons {
   animation-delay: 0.6s;
 }
+
+/* Footer Styles */
+.site-footer {
+    background-color: #1a2f23;
+    color: #f5f5f5;
+    padding: 4rem 2rem 1rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    gap: 2rem;
+}
+
+.footer-logo-section {
+    flex: 0 0 300px;
+}
+
+.footer-logo {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #4caf50;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #4caf50;
+    transform: translateY(-3px);
+}
+
+.footer-links {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+.footer-links-column {
+    min-width: 150px;
+}
+
+.footer-links-column h4 {
+    color: #4caf50;
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.footer-links-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links-column li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links-column a {
+    color: #c5c5c5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links-column a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #c5c5c5;
+}
+
+.heart {
+    color: #ff6b6b;
+    display: inline-block;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

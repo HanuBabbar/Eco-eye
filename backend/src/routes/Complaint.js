@@ -7,8 +7,9 @@ const mongoose = require('mongoose');
 
 const upload = require('../middleware/multer'); // Adjust the path as necessary
 const {uploadImage} = require("../controllers/ImageUpload");
+const {auth} = require('../middleware/auth'); // Adjust the path as necessary
 
 
-app.post('/upload', upload.single('image') , uploadImage);
+app.post('/upload',auth, upload.single('image') , uploadImage);
 
 module.exports = app;

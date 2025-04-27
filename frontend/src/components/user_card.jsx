@@ -47,14 +47,15 @@ const UserLogin = () => {
                 console.log('Login successful:', response.data);
                 
                 // Store user data or token in localStorage/sessionStorage if needed
-                if (formData.rememberMe) {
-                    localStorage.setItem('user', JSON.stringify(response.data.user));
-                    localStorage.setItem('token', response.data.token);
-                } else {
-                    sessionStorage.setItem('user', JSON.stringify(response.data.user));
-                    sessionStorage.setItem('token', response.data.token);
-                }
-                
+                // if (formData.rememberMe) {
+                //     // localStorage.setItem('user', JSON.stringify(response.data.user));
+                //     localStorage.setItem('token', response.data.token);
+                // } else {
+                //     sessionStorage.setItem('user', JSON.stringify(response.data.user));
+                //     sessionStorage.setItem('token', response.data.token);
+                // }
+                localStorage.setItem('token', response.data.token);
+                console.log('Token stored:', response);
                 // Redirect to dashboard or home page
                 navigate('/dashboard');
             } else {

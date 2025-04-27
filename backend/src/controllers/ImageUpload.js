@@ -7,6 +7,11 @@ const ComplaintModel = require('../Models/ComplaintModel');
 exports.uploadImage = async (req, res) => {
     const { complaintLocation, complaintDate, complaintDescription } = req.body;
     const file = req.file;
+    const user = req.user; // Assuming user ID is available in req.user
+    console.log("User ID:", user._id);
+    if (!user) {
+        return res.status(401).json({ success: false, message: 'Unauthorized user.' });
+    }
 
     if (!file) {
         return res.status(400).json({ success: false, message: 'No file uploaded.' });
@@ -43,7 +48,7 @@ exports.uploadImage = async (req, res) => {
         const cloudinaryResponse = await uploadOnCloudinary(file.path);
 
         if (!cloudinaryResponse) {
-            return res.status(500).json({ success: false, message: 'Failed to upload image to Cloudinary.' });
+            return res.status(501).json({ success: false, message: 'Failed to upload image to Cloudinary.' });
         }
 
         // Save complaint to MongoDB
