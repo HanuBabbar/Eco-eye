@@ -199,9 +199,13 @@ const Admin = () => {
                       {complaint.complaintDescription}
                     </Typography>
                   )}
+                  <Typography >
+                  <img src={complaint.complaintImage} alt="Complaint" style={{ height: '90px', width: '90px' }} />
+                  </Typography>
                   <Typography color="text.secondary" sx={{ mb: 0.5 }}>
                     AiOpinion: {complaint.aiOpinion || 'Not specified'}
                   </Typography>
+                  
                 </Box>
 
                 <Box sx={{ 
