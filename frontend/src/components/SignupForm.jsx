@@ -228,8 +228,8 @@ const SignupForm = ({ onBackToDashboard }) => {
 
                 {isSuccess && (
                     <div className="next-steps">
-                        <button className="cta-button primary" onClick={() => window.location.href = "/dashboard"}>
-                            Go to Dashboard
+                        <button className="cta-button primary" onClick={() => window.location.href = "/login"}>
+                            Login Now
                         </button>
                     </div>
                 )}
